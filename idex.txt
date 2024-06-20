@@ -1,0 +1,42 @@
+Entities:
+[Gymnasium] ---1:N---> [Member]
+[Session] ---N:M---> [Member] (via [SessionMember])
+[Session] ---N:M---> [Coach] (via [SessionCoach])
+
+Attributes:
+Gymnasium:
+- GymnasiumID
+- Name
+- Address
+- TelephoneNumber
+
+Member:
+- MemberID
+- LastName
+- FirstName
+- Address
+- DateOfBirth
+- Gender
+- GymnasiumID
+
+Session:
+- SessionID
+- SportType
+- Schedule
+- MaxMembers (Fixed value: 20)
+
+Coach:
+- CoachID
+- LastName
+- FirstName
+- Age
+- Specialty
+
+Join Tables:
+SessionMember:
+- SessionID
+- MemberID
+
+SessionCoach:
+- SessionID
+- CoachID
