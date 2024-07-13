@@ -1,42 +1,59 @@
 Entities:
-[Gymnasium] ---1:N---> [Member]
-[Session] ---N:M---> [Member] (via [SessionMember])
-[Session] ---N:M---> [Coach] (via [SessionCoach])
+
+1.Gymnasium
+ Attributes:
+-Gym_id (Primary Key)
+-Name
+-Address
+-Phone_number
+-Relationships:
+-One Gymnasium can have many Members
+
+2.Member
+ Attributes:
+-Member_id (Primary Key)
+-Last_name
+-First_name
+-Address
+-Date_of_birth
+-Gender
+-Gym_id (Foreign Key referencing Gymnasium)
+-Relationships:
+-Many Members can belong to one Gymnasium
+-Many Members can register for many Sessions (via Registration)
+
+3.Session
+ Attributes:
+-Session_id (Primary Key)
+-Sport_type
+-Schedule
+-Max_members
+-Relationships:
+-Many Sessions can have many Members (via Registration)
+-Many Sessions can have many Coaches (via Session_Coach)
+
+4.Coach
+ Attributes:
+-Coach_id (Primary Key)
+-Last_name
+-First_name
+-Age
+-Speciality
+-Relationships:
+-Many Coaches can participate in many Sessions (via Session_Coach)
+
+5.Registration
+ Attributes:
+-Registration_id (Primary Key)
+-Member_id (Foreign Key referencing Member)
+-Session_id (Foreign Key referencing Session)
+
+6.Purpose:
+Join table to link Members and Sessions
+Session_Coach
 
 Attributes:
-Gymnasium:
-- GymnasiumID
-- Name
-- Address
-- TelephoneNumber
-
-Member:
-- MemberID
-- LastName
-- FirstName
-- Address
-- DateOfBirth
-- Gender
-- GymnasiumID
-
-Session:
-- SessionID
-- SportType
-- Schedule
-- MaxMembers (Fixed value: 20)
-
-Coach:
-- CoachID
-- LastName
-- FirstName
-- Age
-- Specialty
-
-Join Tables:
-SessionMember:
-- SessionID
-- MemberID
-
-SessionCoach:
-- SessionID
-- CoachID
+Session_id (Foreign Key referencing Session)
+Coach_id (Foreign Key referencing Coach)
+Purpose:
+Join table to link Sessions and Coaches
